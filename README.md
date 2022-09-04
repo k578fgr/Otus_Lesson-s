@@ -13,7 +13,9 @@ gcloud auth application-default login
 
 В нём **builders** отвечает за систему, а
 **provisioners** позволяет установить нужное ПО
+
 Чтобы проверить сборку на ошибки запускаем команду
+
 packer validate ./ubuntu16.json
 
 Запустить сборку
