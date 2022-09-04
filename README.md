@@ -47,5 +47,5 @@ gcloud compute firewall-rules create allow-winrm --allow tcp:9292
 ```
 
 
-Но мы научились собирать Packer
+мы научились собирать Packer
 
