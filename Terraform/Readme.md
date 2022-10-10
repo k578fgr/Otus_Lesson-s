@@ -6,7 +6,7 @@
 ```
 terraform -v
 ```
-Моя версия 1.2.7
+Моя версия 1.2.9
 
 Скачать terraform для ОС можно по ссылке
 https://www.terraform.io/downloads
@@ -15,12 +15,12 @@ https://www.terraform.io/downloads
 
 
   # Версия terraform
-  required_version = "1.2.7"
+  required_version = "1.2.9"
 
 ```
 provider "google" {
   ## Версия провайдера
-  version = "4.31.0"
+  version = "3.32.0"
 
   ## ID проекта
   project = "your project id"
