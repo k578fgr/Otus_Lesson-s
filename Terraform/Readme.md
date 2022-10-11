@@ -171,7 +171,9 @@ sudo systemctl start puma
 sudo systemctl enable puma
 
 ```
-Добавлены публичные ключи для пользователей appuser2 и appuser3
+
+```
+#Добавлены публичные ключи для пользователей appuser2 и appuser3
 resource "google_compute_project_metadata_item" "ssh-keys1" {
   key = "ssh-keys"
   value = "appuser1:${file(var.public_key_path)}"
@@ -185,6 +187,7 @@ resource "google_compute_project_metadata_item" "ssh-keys3" {
   value = "appuser3:${file(var.public_key_path)}"
 }
 ```
+
 # P.S.
 Я допустил ошибку и не убрал свои ssh ключи перед созданием инстанса,
 Теперь ругается на добавление новых пользователей)
