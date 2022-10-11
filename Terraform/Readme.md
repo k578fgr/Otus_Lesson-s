@@ -177,7 +177,7 @@ sudo systemctl enable puma
 ```
 
 ```
-#Добавлены публичные ключи для пользователей appuser2 и appuser3
+#Добавлены публичные ключи в main.tf для пользователей appuser2 и appuser3
 resource "google_compute_project_metadata_item" "ssh-keys1" {
   key = "ssh-keys"
   value = "appuser1:${file(var.public_key_path)}"
