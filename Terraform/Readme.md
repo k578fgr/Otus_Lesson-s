@@ -169,8 +169,8 @@ bundle install
 sudo mv /tmp/puma.service /etc/systemd/system/puma.service
 sudo systemctl start puma
 sudo systemctl enable puma
-```
 
+```
 Добавлены публичные ключи для пользователей appuser2 и appuser3
 resource "google_compute_project_metadata_item" "ssh-keys1" {
   key = "ssh-keys"
