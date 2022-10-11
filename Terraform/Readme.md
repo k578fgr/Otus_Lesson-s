@@ -133,6 +133,8 @@ systemctl start puma.
 ```
 Создадим директорию *files* внутри директории terraform и
 создадим внутри нее файл **puma.service**
+Чуть больше про её использование, можно посмотреть здесь
+https://www.youtube.com/watch?v=kfQEPxigNY4
 
 ```
 [Unit]
