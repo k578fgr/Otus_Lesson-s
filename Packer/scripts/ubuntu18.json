@@ -1,0 +1,31 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "dotted-spot-358018",
+            "image_name": "reddit-base-{{timestamp}}",
+            "image_family": "reddit-base",
+            "source_image_family": "ubuntu-1804-lts",
+            "zone": "northamerica-northeast1-b",
+            "ssh_username": "appuser",
+            "ssh_password": "appuser1",
+            "machine_type": "f1-micro"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
+        
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/ruby.sh",
+            "execute_command": "sudo {{.Path}}"
+        
+        }
+    ]
+}
