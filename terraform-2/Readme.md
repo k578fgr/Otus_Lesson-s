@@ -64,3 +64,22 @@ network_interface {
  }
 }
 ```
+
+**Столкнулся с ошибкой**
+Если я пренебрегаю настройкой своего проекта, региона или зоны, я получаю бесполезное сообщение об ошибке:
+
+error: Plan apply failed: project: required field is not set
+
+**Поэтому я добавил в main**
+
+```
+provider "google" {
+  # Версия провайдера
+  version = "4.32.0"
+
+  
+  project = var.project
+
+  region = var.region
+}
+```
