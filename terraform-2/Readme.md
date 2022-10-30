@@ -44,11 +44,11 @@ terraform import google_compute_firewall.firewall_ssh default-allow-ssh
 Зададим IP для инстанса с приложением в виде внешнего
 ресурса. Для этого определим ресурс google_compute_address в
 конфигурационном файле main.tf
-
+```
 resource "google_compute_address" "app_ip" {
   name = "reddit-app-ip"
 }
-
+```
 Ссылаемся на атрибуты другого ресурсаСсылаемся на атрибуты другого ресурса
 Для того чтобы использовать созданный IP адрес в нашем
 ресурсе VM нам необходимо сослаться на атрибуты ресурса,
@@ -84,15 +84,23 @@ provider "google" {
 }
 ```
 
-
+# storage-bucket
+Возникла ошибка
+```
 │ **Error:** Null condition
 │ 
-│   on .terraform/modules/awesome_bucket/main.tf line 2, in resource "google_storage_bucket" "default":
+│   on .terraform/modules/awesome_bucket/main.tf  
+|line 2, 
+| in resource "google_storage_bucket" "default":
 │    2:   count = var.enabled ? 1 : 0
 │     ├────────────────
 │     │ var.enabled is null
 │ 
-│ The condition value is null. Conditions must either be true
+│ The condition value is null. 
+| Conditions must     either be true
 │ or false.
-
-**var.versioning_enabled**
+```
+Поменял строку *var.enabled* на
+```
+var.versioning_enabled
+```
