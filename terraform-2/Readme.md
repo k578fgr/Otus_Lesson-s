@@ -83,3 +83,16 @@ provider "google" {
   region = var.region
 }
 ```
+
+
+│ **Error:** Null condition
+│ 
+│   on .terraform/modules/awesome_bucket/main.tf line 2, in resource "google_storage_bucket" "default":
+│    2:   count = var.enabled ? 1 : 0
+│     ├────────────────
+│     │ var.enabled is null
+│ 
+│ The condition value is null. Conditions must either be true
+│ or false.
+
+**var.versioning_enabled**
