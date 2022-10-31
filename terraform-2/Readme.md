@@ -85,22 +85,25 @@ provider "google" {
 ```
 
 # storage-bucket
-Возникла ошибка
-```
+Ошибки
+
 │ **Error:** Null condition
 │ 
-│   on .terraform/modules/awesome_bucket/main.tf  
-|line 2, 
-| in resource "google_storage_bucket" "default":
+│   on .terraform/modules/awesome_bucket/main.tf line 2, in resource "google_storage_bucket" "default":
 │    2:   count = var.enabled ? 1 : 0
 │     ├────────────────
 │     │ var.enabled is null
 │ 
-│ The condition value is null. 
-| Conditions must     either be true
-│ or false.
-```
-Поменял строку *var.enabled* на
-```
-var.versioning_enabled
-```
+│ The condition value is null. Conditions must either be true or false.
+
+
+заменил 
+sudo vim .terraform/modules/awesome_bucket/context.tf
+в строчке enabled на 
+default = true
+
+**Error:** googleapi: Error 409: The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again., conflict
+
+Изменил имя инстанса на другое
+
+задания со звёздочкой оставил на потом
