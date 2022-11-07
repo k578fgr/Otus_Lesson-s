@@ -6,7 +6,7 @@
 ```
 terraform -v
 ```
-Моя версия 1.2.7
+Моя версия 1.2.9
 
 Скачать terraform для ОС можно по ссылке
 https://www.terraform.io/downloads
@@ -15,12 +15,12 @@ https://www.terraform.io/downloads
 
 
   # Версия terraform
-  required_version = "1.2.7"
+  required_version = "1.2.9"
 
 ```
 provider "google" {
   ## Версия провайдера
-  version = "4.31.0"
+  version = "3.32.0"
 
   ## ID проекта
   project = "your project id"
@@ -105,7 +105,7 @@ terraform output
 ```
 покажет айпишник
 
-Внутрь ресурса, содержащего описание VM, вставьте секцию
+# Внутрь ресурса, содержащего описание VM, вставьте секцию
 провижинера типа **file**, который позволяет копировать содержимое
 файла на удаленную машину.
 ```
@@ -119,16 +119,22 @@ provisioner "file" {
 локальный файл, располагающийся по указанному относительному
 пути **(files/puma.service)**, в указанное место на удаленном хосте.
 
-Unit file для PumaUnit file для Puma
+## Unit file для Puma
 В определении провижинера мы указали путь до systemd unit
 файла для Puma. 
 
 Systemd использует unit файлы для запуска,
+
 остановки сервиса или добавления его в автозапуск. С его
 помощью мы можем запускать сервер приложения, используя
-команду systemctl start puma.
-Создадим директорию files внутри директории terraform и
-создадим внутри нее файл puma.service
+команду 
+```
+systemctl start puma.
+```
+Создадим директорию *files* внутри директории terraform и
+создадим внутри нее файл **puma.service**
+Чуть больше про её использование, можно посмотреть здесь
+https://www.youtube.com/watch?v=kfQEPxigNY4
 
 ```
 [Unit]
@@ -169,16 +175,11 @@ bundle install
 sudo mv /tmp/puma.service /etc/systemd/system/puma.service
 sudo systemctl start puma
 sudo systemctl enable puma
+
 ```
 
-Добавлен публичный ssh-ключ, общий для всего проекта
 ```
-resource "google_compute_project_metadata_item" "sshkey-appuser1" {
-  key = "ssh-keys"
-  value = "appuser1:${file(var.public_key_path)}"
-}
-
-Добавлены публичные ключи для пользователей appuser2 и appuser3
+#Добавлены публичные ключи в main.tf для пользователей appuser2 и appuser3
 resource "google_compute_project_metadata_item" "ssh-keys1" {
   key = "ssh-keys"
   value = "appuser1:${file(var.public_key_path)}"
@@ -192,8 +193,9 @@ resource "google_compute_project_metadata_item" "ssh-keys3" {
   value = "appuser3:${file(var.public_key_path)}"
 }
 ```
+
 # P.S.
-Я допустил ошибку и не убрал свои ssh ключи перед созданием инстанса,
+Я допустил ошибку и не убрал свои ssh-ключи перед созданием инстанса,
 Теперь ругается на добавление новых пользователей)
 
 Для записаных пользователей

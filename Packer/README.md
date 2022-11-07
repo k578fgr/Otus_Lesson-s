@@ -15,10 +15,12 @@ gcloud auth application-default login
 **provisioners** позволяет установить нужное ПО
 
 Чтобы проверить сборку на ошибки запускаем команду
-
+```
 packer validate ./ubuntu16.json
+```
 
 Запустить сборку
+
 ```
 packer build ubuntu16.json
 ```
@@ -40,7 +42,7 @@ ps aux | grep puma
 
 А дальше открываем прослушиваеый порт
 
-в нашем случае порт 22 и 9292
+в нашем случае порт 9292
 
 ```
 gcloud compute firewall-rules create allow-winrm --allow tcp:9292

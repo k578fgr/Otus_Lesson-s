@@ -1,0 +1,17 @@
+project    = "<your_project>"
+disk_image = "<image_from_packer>"
+
+region           = "northamerica-northeast1"
+zone             = "northamerica-northeast1-c"
+
+
+private_key_path = "/home/appuser/.ssh/id_rsa"
+
+public_key_path  = "ssh-rsa <some_key>"
+name             = "name_of_instance"
+
+#Создаёт пользователей и авторизованные ключи к ним
+ssh_keys = [
+   "appuser:ssh-rsa ssh-rsa <some_key> appuser",
+    "appuser1:ssh-rsa ssh-rsa <some_key> appuser1"
+]
