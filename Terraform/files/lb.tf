@@ -82,3 +82,8 @@ resource "google_compute_global_forwarding_rule" "app_forwarding_rule" {
 output "lb_external_ip" {
   value = google_compute_global_forwarding_rule.app_forwarding_rule.ip_address
 }
+
+#Хотелось бы в будущем попробовать ещё с 
+#https://github.com/terraform-google-modules/terraform-google-lb-http
+#А ещё с 
+#
