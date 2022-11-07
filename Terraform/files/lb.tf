@@ -86,4 +86,6 @@ output "lb_external_ip" {
 #Хотелось бы в будущем попробовать ещё с 
 #https://github.com/terraform-google-modules/terraform-google-lb-http
 #А ещё с 
-#
+#https://raw.githubusercontent.com/terraform-google-modules/terraform-google-lb-http/master/main.tf
+#Или
+#https://linux-notes.org/rabota-s-google-cloud-platform-compute-health-check-i-terraform-v-unix-linux/
