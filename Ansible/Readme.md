@@ -57,3 +57,9 @@ Verify that the playbook ran successfully:
 два узла, создать простую инвентаризацию и написать Ansible playbook. Поздравляю с завершением этого
 лаборатория!
 
+ansible linux -m ping
+Ключ m (module) включает модуль на всех машинах и пингует их, чтобы увидеть в сети ли они
+linux - host machine
+
+ansible linux -a "cat /etc/os-release"
+-a adds commands
