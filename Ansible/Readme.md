@@ -124,4 +124,32 @@ ansible_network_os=ios
 ansible_port=8181
 ```
 
-ansible routers -m ios_command -a "commands='show ip int brief'"
+Так же можно указать серверы all и серверы grouped и ungrouped
+
+Так же можем соединять к примеру
+
+```
+[prod_DB]
+10.0.0.1
+
+[prod_WEB]
+10.0.0.2
+
+[prod_APP]
+10.0.0.3
+
+[prod_ALL:children]
+prod_DB
+prod_WEB
+prod_APP
+```
+
+Можно выписать пароли и ssh ключи
+
+```
+[staging_servers]
+linux ansible_host=172.31.8.69 
+
+[staging_servers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_files=/home/ec2-user/.sh/california-keyl.pem
