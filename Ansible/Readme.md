@@ -109,6 +109,9 @@ vi hosts
 ```
 тут можно отредактировать группу хостов
 
+
+# Как можно сделать inventory file
+
 ```
 [routers]
 
@@ -153,3 +156,9 @@ linux ansible_host=172.31.8.69
 [staging_servers:vars]
 ansible_user=ec2-user
 ansible_ssh_private_key_files=/home/ec2-user/.sh/california-keyl.pem
+
+```
+ansible-inventory --list
+```
+
+Показывает сервера, группы, переменные к ним относятся
