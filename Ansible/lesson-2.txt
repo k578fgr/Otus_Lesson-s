@@ -1,3 +1,10 @@
+
+**создаёт пользователя**
+ansible dbsystems -b -m user -a "name=consultant"
+
+создаёт файл
+ansible dbsystems -b -m file -a "path=/home/consultant/.ss state=directory owner=consultant group=consultant mode=0755"
+
 file media
 Paste in the following:
 
@@ -123,3 +130,5 @@ media_content.tgz
 tgz
         path: "{{ media_index }}"
       tags: mediavars
+
+      
