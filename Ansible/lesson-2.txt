@@ -75,9 +75,12 @@ scripts/backup.yml --tags "hostvar"
 scripts/backup.yml
     exit $?
 esac
+```
 
 
 **backup.yml**
+
+```
 ---
 - hosts: all
   become: yes
@@ -130,5 +133,5 @@ media_content.tgz
 tgz
         path: "{{ media_index }}"
       tags: mediavars
-
+```
       
