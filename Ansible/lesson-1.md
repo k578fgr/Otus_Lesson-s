@@ -48,3 +48,9 @@ bindIp: {{ mongo_bind_ip }} # <-- Подстановка значения пер
 
 
 ansible-playbook --check
+
+
+--limit - ограничиваем группу хостов, для которых
+применить плейбук
+
+ansible-playbook reddit_app.yml --check --limit db
