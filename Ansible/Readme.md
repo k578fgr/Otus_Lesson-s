@@ -105,7 +105,7 @@ ansible.cfg
 
 убрать хэш
 ```
-vi hosts
+vi /etc/ansible/hosts
 ```
 тут можно отредактировать группу хостов
 
@@ -157,9 +157,53 @@ linux ansible_host=172.31.8.69
 ansible_user=ec2-user
 ansible_ssh_private_key_files=/home/ec2-user/.sh/california-keyl.pem
 
+
+Показывает сервера, группы, переменные к ним относятся
+
 ```
 ansible-inventory --list
 ```
 
-Показывает сервера, группы, переменные к ним относятся
+
+
+
+Handlers - это специальные задачи. Они вызываются из других задач ключевым словом notify.
+
+Эти задачи срабатывают после выполнения всех задач в сценарии (play). При этом, если несколько задач вызвали одну и ту же задачу через notify, она выполниться только один раз.
+
+Handlers описываются в своем подразделе playbook - handlers, так же, как и задачи. Для них используется такой же синтаксис, как и для задач.
+
+```
+---
+- name: Verify apache installation
+  hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+    - name: Ensure apache is at the latest version
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+
+    - name: Write the apache config file
+      ansible.builtin.template:
+        src: /srv/httpd.j2
+        dest: /etc/httpd.conf
+      notify:
+      - Restart apache
+
+    - name: Ensure apache is running
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+  handlers:                     
+    - name: Restart apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+        
+```
 
