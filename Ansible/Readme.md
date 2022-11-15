@@ -62,7 +62,7 @@ $ ansible linux -m ping
 linux - host machine
 
 $ ansible linux -a "cat /etc/os-release"
--a adds commands (ключ добавляет команду)
+-a (argument) (ключ добавляет команду)
 
 playbook - yaml
 

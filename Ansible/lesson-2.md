@@ -1,28 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -------------------------
 # Create the User Accounts Noted in /home/ansible/userlist.txt
 Команда создаёт пользователей
@@ -43,3 +20,13 @@ ansible dbsystems -b -m user -a "name=supervisor"
 
 # Ensure auditd Is Enabled and Running on All Hosts
  ansible all -b -m service -a "name=auditd state=started enabled=yes
+
+ ansible all -m setup
+ Информация о серверах или лучше
+ ansible stagging_servers -m setup
+
+ ansible all -m shell -a "uptime"
+ Запустит на всех серверах команду uptime
+
+Скопировать файл, ключ -b (become sudo)
+ ansible all -m copy -a "src=privet.txt dest=/home mode=0777" -b
