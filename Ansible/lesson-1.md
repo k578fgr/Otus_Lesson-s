@@ -15,36 +15,42 @@ tasks: # <-- Блок тасков (заданий), которые будут �
 параметризированный локальный конфиг файл MongoDB на
 удаленный хост по указанному пути. Добавим task в файл
 ansible/reddit_app.yml:
----
-- name: Configure hosts & deploy application
-hosts: all
-tasks:
-- name: Change mongo config file
-become: true # <-- Выполнить задание от root
-template:
-src: templates/mongod.conf.j2 # <-- Путь до локального файла-шаблона
-dest: /etc/mongod.conf # <-- Путь на удаленном хосте
-mode: 0644 # <-- Права на файл, которые нужно установить
-
 
 # Файл templates/mongod.conf.j2
-
-#Where and how to store data.
+Файл templates/mongod.conf.j2
+# Where and how to store data.
 storage:
 dbPath: /var/lib/mongodb
 journal:
 enabled: true
-#Where to write logging data.
+# Where to write logging data.
 systemLog:
 destination: file
 logAppend: true
 path: /var/log/mongodb/mongod.log
-#Network interfaces
+# Network interfaces
 net:
-#default - один из фильтров Jinja2, он задает значение по умолчанию,
-#если переменная слева не определена
+# default - один из фильтров Jinja2, он задает значение по умолчанию,
+# если переменная слева не определена
 port: {{ mongo_port | default('27017') }}
 bindIp: {{ mongo_bind_ip }} # <-- Подстановка значения переменной
+
+#Where and how to store data.
+
+---
+- name: Configure hosts & deploy application
+hosts: all
+vars:
+mongo_bind_ip: 0.0.0.0 # <-- Переменная задается в блоке vars
+tasks:
+- name: Change mongo config file
+become: true
+template:
+src: templates/mongod.conf.j2
+dest: /etc/mongod.conf
+mode: 0644
+tags: db-tag
+
 
 
 ansible-playbook --check
@@ -54,3 +60,4 @@ ansible-playbook --check
 применить плейбук
 
 ansible-playbook reddit_app.yml --check --limit db
+
