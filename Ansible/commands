@@ -22,3 +22,9 @@ ansible all -m yum -a "name=httpd state=latest" -b
 
 Чтобы запускался с service
 ansible all -m service -a "name=httpd state=started enabled=yes" -b"
+
+Посмотреть пожробную информацию до 5 v
+ansible server -m shell -a "ls /var/" -v 
+
+Показать все модули, которые есть в anible
+ansible-doc -l
