@@ -19,17 +19,18 @@ ansible/reddit_app.yml:
 # Файл templates/mongod.conf.j2
 Файл templates/mongod.conf.j2
 
-# Where and how to store data.
+# Где и как хранить данные.
 storage:
 dbPath: /var/lib/mongodb
 journal:
 enabled: true
 
-# Where to write logging data.
+# Куда писать данные регистрации.
 systemLog:
 destination: file
 logAppend: true
 path: /var/log/mongodb/mongod.log
+
 # Network interfaces
 net:
 # default - один из фильтров Jinja2, он задает значение по умолчанию,
@@ -37,8 +38,7 @@ net:
 port: {{ mongo_port | default('27017') }}
 bindIp: {{ mongo_bind_ip }} # <-- Подстановка значения переменной
 
-#Where and how to store data.
-
+```
 ---
 - name: Configure hosts & deploy application
 hosts: all
@@ -52,7 +52,7 @@ src: templates/mongod.conf.j2
 dest: /etc/mongod.conf
 mode: 0644
 tags: db-tag
-
+```
 
 
 ansible-playbook --check
