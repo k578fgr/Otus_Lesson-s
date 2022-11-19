@@ -18,5 +18,7 @@ ansible all -m uri -a "url=http://www.adv-it.net"
 ansible all -m uri -a "url=http://www.adv-it.net return_content=yes"
 
 Установить apache сервера
-
 ansible all -m yum -a "name=httpd state=latest" -b
+
+Чтобы запускался с service
+ansible all -m service -a "name=httpd state=started enabled=yes" -b"
