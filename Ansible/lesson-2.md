@@ -18,7 +18,7 @@ ansible dbsystems -b -m user -a "name=supervisor"
 
 
 
-# Ensure auditd Is Enabled and Running on All Hosts
+# Убедимся что аудит включён и работает на всех инстансах
  ansible all -b -m service -a "name=auditd state=started enabled=yes
 
  ansible all -m setup
