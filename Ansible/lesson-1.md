@@ -18,11 +18,13 @@ ansible/reddit_app.yml:
 
 # Файл templates/mongod.conf.j2
 Файл templates/mongod.conf.j2
+
 # Where and how to store data.
 storage:
 dbPath: /var/lib/mongodb
 journal:
 enabled: true
+
 # Where to write logging data.
 systemLog:
 destination: file
@@ -55,6 +57,11 @@ tags: db-tag
 
 ansible-playbook --check
 
+Покажет лист variable для всех хостов
+ansible-inventory --list
+
+
+ansible-inventory --graph
 
 --limit - ограничиваем группу хостов, для которых
 применить плейбук
