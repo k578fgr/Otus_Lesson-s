@@ -1,0 +1,9 @@
+```
+---
+- name: Test Connection to my servers    <---name
+  hosts: all                             
+  become: yes                          <-- -b(become sudo)
+
+  tasks:
+  - name: Ping my service
+    ping:                               <-- -m (module)
