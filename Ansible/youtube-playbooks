@@ -22,6 +22,7 @@
     yum: name=httpd state=latest
 ```
 
+Установить
 ```
 ---
 -name: Install Apache and Upload my Web Page
