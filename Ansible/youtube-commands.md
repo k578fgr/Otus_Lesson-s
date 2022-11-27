@@ -31,3 +31,6 @@ ansible-doc -l
 
 Выполнить команду с паролем
 ansible -m ping ubuntu -k
+
+Увидеть данные серверов
+ansible all -m setup
