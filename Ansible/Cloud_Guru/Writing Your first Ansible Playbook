@@ -1,0 +1,64 @@
+Добавляет адрес в host файл, затем добавляет пользователя
+
+Create a basic playbook in /home/ansible/bootstrap.yml that completes the noted task required for all servers in the Ansible inventory.
+
+Create the file /home/ansible/bootstrap.yml and add the following content:
+
+vim /home/ansible/bootstrap.yml
+ ---
+ - hosts: all
+   become: yes
+   tasks:
+     - name: edit host file
+       lineinfile:
+         path: /etc/hosts
+         line: "ansible.xyzcorp.com 169.168.0.1"     <--- вписать во внутрь хоста
+     - name: install elinks
+       package:
+         name: elinks
+         state: latest
+     - name: create audit user
+       user:
+         name: xyzcorp_audit
+         state: present
+     - name: update motd
+       copy:
+         src: /home/ansible/motd
+         dest: /etc/motd
+     - name: update issue
+       copy:
+         src: /home/ansible/issue
+         dest: /etc/issue
+     
+Add a section to the playbook for the Network servers in the Ansible inventory
+
+Add a section to the playbook for the Network servers in the Ansible inventory
+Add a section to the playbook in /home/ansible/bootstrap.yml that completes the noted task required for the network servers in the Ansible inventory.
+
+Create a play in the file /home/ansible/bootstrap.yml similar to the following:
+
+ - hosts: network
+   become: yes
+   tasks:
+     - name: install netcat
+       yum:
+         name: nmap-ncat
+         state: latest
+     - name: create network user
+       user:
+         name: xyzcorp_network
+         state: present
+
+Add a section to the playbook for the SysAdmin servers in the Ansible inventory
+Add a section to the playbook in /home/ansible/bootstrap.yml that completes the noted task required for the sysadmin servers in the Ansible inventory.
+
+Create a play in the file /home/ansible/bootstrap.yml similar to the following:
+
+ - hosts: sysadmin
+   become: yes
+   tasks:
+     - name: copy tarball
+       copy:
+         src: /home/ansible/scripts.tgz
+         dest: /mnt/storage/
+

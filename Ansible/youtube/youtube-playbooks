@@ -1,0 +1,53 @@
+```
+---
+- name: Test Connection to my servers    <---name
+  hosts: all                             
+  become: yes                          <-- -b(become sudo)
+
+  tasks:
+  - name: Ping my service
+    ping:                               <-- -m (module)
+
+```
+
+```
+---
+- name: Install default Apache Web Server
+  hosts: all
+  become: yes
+
+
+ tasks:
+  - name: Install Apache Webservers
+    yum: name=httpd state=latest
+```
+
+Установить
+```
+---
+-name: Install Apache and Upload my Web Page
+  hosts: all
+  become: yes
+
+vars:
+    source_file: ./MyWebSite/index.html   <--variable
+    destin_file /var/www/html
+
+tasks:
+- name: Install Apache Web Server
+  yum: name=httpd state=latest
+
+- name: Copy MyHomePage to Servers    <-- Module
+  copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+notify: Restart Apache             <-- Сообщит что модуль рестартнулся
+
+#state-Состояние
+- name: Start WebServer and make it enable on boot  <-- пример модуля
+  service: name=httpd state=started enabled=yes    
+
+handlers:
+ - name: Restart Apache
+  service: name=httpd state=restarted
+
+```
+

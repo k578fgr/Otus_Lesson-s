@@ -1,0 +1,8 @@
+```
+#Создали этот файл для того, чтобы описывать роль и её версию
+- src: geerlingguy.apache
+```
+$ ansible-galaxy install -r requirements.yml
+
+var_files:
+- "{{ inventory_dir }}/credentials.yml"

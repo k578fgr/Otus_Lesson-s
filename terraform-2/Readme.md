@@ -87,7 +87,15 @@ provider "google" {
 # storage-bucket
 Ошибки
 
-│ **Error:** Null condition
+
+**Error:** googleapi: Error 409: The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again., conflict
+
+Изменил имя инстанса на другое
+
+
+
+```
+Error: Null condition
 │ 
 │   on .terraform/modules/awesome_bucket/main.tf line 2, in resource "google_storage_bucket" "default":
 │    2:   count = var.enabled ? 1 : 0
@@ -95,15 +103,15 @@ provider "google" {
 │     │ var.enabled is null
 │ 
 │ The condition value is null. Conditions must either be true or false.
+```
 
+Здесь изменил ошибку
+sudo vim .terraform/modules/awesome_bucket/main.tf
+изменил на
+count = "1"
 
-заменил 
-sudo vim .terraform/modules/awesome_bucket/context.tf
-в строчке enabled на 
-default = true
-
-**Error:** googleapi: Error 409: The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again., conflict
-
-Изменил имя инстанса на другое
+Здесь поменял имя бакета
+sudo vim .terraform/modules/awesome_bucket/outputs.tf
+value       = join("", google_storage_bucket.GnatkoBacket.*.self_link) заменил default на свой
 
 задания со звёздочкой оставил на потом
